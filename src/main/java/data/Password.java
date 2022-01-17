@@ -7,6 +7,10 @@ public class Password {
 	private static final String securityKey = "stlogic";
 	
 	public String getEncrypt( String password ) {
+		return this.encrypt(password);
+	}
+	
+	public String encrypt( String password ) {
 		return DigestUtils.sha512Hex( securityKey + password ); 
 	} 
 
@@ -16,7 +20,7 @@ public class Password {
 		
 		Password password = new Password();
 		
-		String encrypt = password.getEncrypt( pass ) ; 
+		String encrypt = password.encrypt( pass ) ; 
 
 		System.out.println( encrypt );
 	}
