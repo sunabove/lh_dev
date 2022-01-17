@@ -20,7 +20,7 @@
             
             <c:if test="${ not empty login_user_id }" >
 	            &nbsp;
-	            <li class="nav-item"><a class="nav-link" href="user_info.jsp?id=${login_user_id}"> ${ login_user_id } </a></li>             
+	            <li class="nav-item"><a class="nav-link" href="user_info.jsp?user_id=${login_user_id}"> ${ login_user_id } </a></li>             
 	            <li class="nav-item"><a class="nav-link" href="user_logout.jsp"> 로그아웃 </a></li>
             </c:if>
         </ul>
@@ -29,7 +29,7 @@
 </nav>
 
 <div class="jumbotron text-center">
-  <br/>
+  <br/><br/>
   <h1> ${page_title} </h1> 
 </div>
   

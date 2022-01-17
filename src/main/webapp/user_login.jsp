@@ -47,7 +47,7 @@
 	<div class="container">
 		<h2> 사용자 로그인 ${ login_user_id }</h2>
 		<br/>
-		<form action="" class="needs-validation" id="myForm" method="GET" >
+		<form action="" id="myForm" method="GET" onsubmit="return check_submit();" >
 			<div class="form-group">
 				<label for="email">아이디:</label>
 				<input type="text" class="form-control" 
@@ -82,17 +82,17 @@
 			
 			<br/>
 			
-			<button type="button" class="btn btn-primary" onclick="check_submit();" >로그인</button>
+			<button type="submit" class="btn btn-primary" >로그인</button>
 		</form>
 		<script>
 			function check_submit() {
-				var valid = 1 ;
+				var valid = true ;
 				
 				if( $( "#user_id").val().trim().length < 2 ) { 
 					var form = $( "#user_id_valid" ) ; 
 					form.removeClass( "invisible" ) ;
 					
-					valid = 0 ; 
+					valid = false ; 
 				} else {
 					var form = $( "#user_id_valid" ) ; 
 					form.addClass( "invisible" ) ;
@@ -102,17 +102,13 @@
 					var form = $( "#user_pass_valid" ) ; 
 					form.removeClass( "invisible" ) ;
 					
-					valid = 0 ; 
+					valid = false ; 
 				} else {
 					var form = $( "#user_pass_valid" ) ; 
 					form.addClass( "invisible" ) ;
-				}
+				} 
 				
-				if( valid ) {
-					$( "#myForm" ).submit();
-				}
-				
-				return 0 ; 
+				return valid ; 
 			}
 		</script>
 		<br/><br/><br/>
