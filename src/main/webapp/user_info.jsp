@@ -5,14 +5,14 @@
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<jsp:include page="100_common.jsp" /> 
+<jsp:include page="100_common.jsp" />
 
 <c:if test="${ empty login_user_id }" >
 	<c:redirect url="index.jsp" />
 </c:if>
 
 <c:set var="a" value="1,2354" />
-<c:set scope="request" var="page_title" value="데이터 관리" />
+<c:set scope="request" var="page_title" value="사용자 정보" />
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -28,7 +28,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12">
-				<h3> 데이터 관리 </h3> 
+				<h3> 사용자 정보 </h3> 
 				<h4> PATH = ${ path } </h4>
 			</div>
 		</div>

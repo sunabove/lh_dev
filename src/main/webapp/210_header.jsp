@@ -7,19 +7,25 @@
 
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-    <div class="container px-4 px-lg-5">    
-        <a class="navbar-brand" href="index.jsp">
-        	<h1>주택시장 통합 플랫품</h1> 
-        </a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                <li class="nav-item"><a class="nav-link" href="data_manage.jsp">데이터 관리</a></li>
-                <li class="nav-item"><a class="nav-link" href="model_manage.jsp">모델 관리</a></li>
-                <li class="nav-item"><a class="nav-link" href="user_manage.jsp"> 사용자 관리 </a></li> 
-            </ul>
-        </div>
+<div class="container px-4 px-lg-5">    
+    <a class="navbar-brand" href="index.jsp">
+    	<h1>주택시장 통합 플랫품</h1> 
+    </a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ms-auto my-2 my-lg-0">
+            <li class="nav-item"><a class="nav-link" href="user_manage.jsp"> 사용자 관리 </a></li> 
+            <li class="nav-item"><a class="nav-link" href="data_manage.jsp">데이터 관리</a></li>
+            <li class="nav-item"><a class="nav-link" href="model_manage.jsp">모델 관리</a></li>
+            
+            <c:if test="${ not empty login_user_id }" >
+	            &nbsp;
+	            <li class="nav-item"><a class="nav-link" href="user_info.jsp?id=${login_user_id}"> ${ login_user_id } </a></li>             
+	            <li class="nav-item"><a class="nav-link" href="user_logout.jsp"> 로그아웃 </a></li>
+            </c:if>
+        </ul>
     </div>
+</div>
 </nav>
 
 <div class="jumbotron text-center">

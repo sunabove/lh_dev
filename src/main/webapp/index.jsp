@@ -24,7 +24,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12">
-				<h3>메타 데이터 / 모형 파일 관리</h3>
+				<h3> 데이터 관리 / 모형 관리 / 사용자 관리 </h3>
 				<c:if test="${empty login_user_id}" >
 					<p>
 						

@@ -12,5 +12,4 @@
 	user="landbigdata" password="landbigdata" 
 /> 
 
-<c:set scope="request" var="path" value="${pageContext.request.servletPath}" />
- 
+<c:set scope="request" var="path" value="${pageContext.request.servletPath}" /> 
