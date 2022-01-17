@@ -6,8 +6,8 @@
 <%@ taglib prefix="fn" 	uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-<div class="container px-4 px-lg-5">    
+<nav class="navbar navbar-expand-lg navbar-light fixed-top_ py-1" id="mainNav">
+<div class="container-fluid jumbotron ">    
     <a class="navbar-brand" href="index.jsp">
     	<h1>주택시장 통합 플랫품</h1> 
     </a>
@@ -28,8 +28,7 @@
 </div>
 </nav>
 
-<div class="jumbotron text-center">
-  <br/><br/>
+<div class="container text-center py-0">
   <h1> ${page_title} </h1> 
 </div>
   

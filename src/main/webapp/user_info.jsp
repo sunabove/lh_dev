@@ -31,6 +31,10 @@
 				href="user_info.jsp?user_id=${param.user_id}">사용자 정보</a></li>
 			<li class="nav-item"><a class="nav-link"
 				href="user_access.jsp?user_id=${param.user_id}">접근 관리</a></li>
+				
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<li class="nav-item"><a class="nav-link"
+				href="user_list.jsp?user_id=${param.user_id}">목록</a></li>
 		</ul>
 		
 		<br/>

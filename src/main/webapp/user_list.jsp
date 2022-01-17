@@ -25,42 +25,41 @@
 
 	<jsp:include page="210_header.jsp" />
 
-	<div class="container"> 
-			<sql:query dataSource="${db}" var="result">
-				SELECT mgr_id, mgr_grade, mgr_name, mgr_pw FROM MA_ADMIN_MGR
+	<div class="container">
+		<sql:query dataSource="${db}" var="result">
+				SELECT mgr_id, mgr_grade, mgr_name, mgr_pw, mod_date 
+				FROM MA_ADMIN_MGR
+				ORDER BY mgr_id
 				LIMIT 20
 			</sql:query>
-			
-			<h3> 사용자 목록 <br/> </h3> 
 
-			<table class="table table-hover">
-				<thead>
+		<h3>
+			사용자 목록 <br/>
+		</h3>
+
+		<table class="table table-hover text-center">
+			<thead>
+				<tr>
+					<th>아이디</th>
+					<th>등급</th>
+					<th>이름</th>
+					<th>수정일</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="row" items="${result.rows}">					
 					<tr>
-						<th>Firstname</th>
-						<th>Lastname</th>
-						<th>Email</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>John</td>
-						<td>Doe</td>
-						<td>john@example.com</td>
-					</tr>
-					<tr>
-						<td>Mary</td>
-						<td>Moe</td>
-						<td>mary@example.com</td>
-					</tr>
-					<tr>
-						<td>July</td>
-						<td>Dooley</td>
-						<td>july@example.com</td>
-					</tr>
-				</tbody>
-			</table> 
+						<td><a href="user_info.jsp?user_id=${row.mgr_id}" >${ row.mgr_id }</a></td>
+						<td>${ row.mgr_grade }</td>
+						<td>${ row.mgr_name }</td> 
+						<td>${ row.mod_date }</td>
+					</tr> 
+					
+				</c:forEach>
+			</tbody>
+		</table>
 	</div>
 
-		<jsp:include page="220_footer.jsp" />
+	<jsp:include page="220_footer.jsp" />
 </body>
 </html>
