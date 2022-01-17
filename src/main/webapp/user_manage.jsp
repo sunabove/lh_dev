@@ -7,8 +7,12 @@
 
 <jsp:include page="100_common.jsp" />
 
+<c:if test="${ empty login_user_id }" >
+	<c:redirect url="index.jsp" />
+</c:if>
+
 <c:set var="a" value="1,2354" />
-<c:set scope="request" var="page_title" value="메터 데이터 관리" />
+<c:set scope="request" var="page_title" value="사용자 관리" />
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -24,21 +28,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12">
-				<h3>메타 데이터 / 모형 파일 관리</h3>
-				<c:if test="${empty login_user_id}" >
-					<p>
-						
-							<a href="user_login.jsp" >사용자 로그인</a> 
-					</p>
-					<a href="user_login.jsp" >
-						<img src="img/logo_01.png" title="로그인" />
-					</a>
-				</c:if>
-				<c:if test="${!empty login_user_id}" > 
-					<a href="data_manage.jsp" >
-						<img src="img/logo_01.png" title="로그인" />
-					</a>
-				</c:if>
+				<h3> 사용자 관리 </h3> 
+				<h4> PATH = ${ path } </h4>
 			</div>
 		</div>
 	</div>

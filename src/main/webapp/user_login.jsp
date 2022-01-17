@@ -7,8 +7,31 @@
 
 <jsp:include page="100_common.jsp" />
 
-<c:set var="a" value="1,2354" />
 <c:set scope="request" var="page_title" value="데이터 연계" />
+
+<sql:query dataSource="${db}" var="result" >
+	SELECT mgr_id, mgr_grade, mgr_name, mgr_pw FROM MA_ADMIN_MGR
+	WHERE mgr_id = ? 
+	LIMIT 1
+	<sql:param value="${ param.user_id }" />
+</sql:query>
+
+<c:forEach var = "row" items = "${result.rows}">
+	<c:set var="mgr_id" value="${ row.mgr_id }" /> 
+	<c:set var="mgr_grade" value="${ row.mgr_grade }" />
+	<c:set var="mgr_name" value="${ row.mgr_name }" />
+	
+	<c:if test="${ ! empty mgr_id }" >
+		<c:set scope="session" var="login_user_id" value="${ mgr_id }" />
+		<c:set scope="session" var="login_user_grade" value="${ mgr_grade }" />  
+		<c:set scope="session" var="login_user_name" value="${ mgr_name }" />
+	</c:if>
+	
+</c:forEach>
+
+<c:if test="${ ! empty login_user_id }" >
+	<c:redirect url="index.jsp" />
+</c:if>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -22,17 +45,24 @@
 	<jsp:include page="210_header.jsp" />
 
 	<div class="container">
-		<h2> 사용자 로그인 </h2>
+		<h2> 사용자 로그인 ${ login_user_id }</h2>
 		<br/>
-		<form action="" class="needs-validation" id="myForm" >
+		<form action="" class="needs-validation" id="myForm" method="GET" >
 			<div class="form-group">
 				<label for="email">아이디:</label>
 				<input type="text" class="form-control" 
 					name="user_id" id="user_id" style="width:60%;"
-					placeholder="아이디 입력" />
-				<span id="user_id_valid" class="help-block invisible text-danger">
-					잘못된 아이디입니다. 
-				</span>
+					placeholder="아이디 입력" value="${param.user_id}"/>
+				<c:if test="${ ! empty param.user_id }">
+					<span id="user_id_valid" class="help-block text-danger">
+						잘못된 아이디입니다. 
+					</span>
+				</c:if>
+				<c:if test="${ empty param.user_id }">
+					<span id="user_id_valid" class="help-block invisible text-danger">
+						잘못된 아이디입니다. 
+					</span>
+				</c:if>
 			</div>
 			<div class="form-group" >
 				<label for="pwd">비밀번호:</label>
@@ -58,7 +88,7 @@
 			function check_submit() {
 				var valid = 1 ;
 				
-				if( $( "#user_id").val().trim().length < 4 ) { 
+				if( $( "#user_id").val().trim().length < 2 ) { 
 					var form = $( "#user_id_valid" ) ; 
 					form.removeClass( "invisible" ) ;
 					
@@ -68,7 +98,7 @@
 					form.addClass( "invisible" ) ;
 				}
 				
-				if( $( "#user_pass").val().trim().length < 6 ) { 
+				if( $( "#user_pass").val().trim().length < 4 ) { 
 					var form = $( "#user_pass_valid" ) ; 
 					form.removeClass( "invisible" ) ;
 					

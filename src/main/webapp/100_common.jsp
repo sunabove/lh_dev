@@ -11,3 +11,6 @@
 	url="jdbc:postgresql://localhost:5432/landbigdata" 
 	user="landbigdata" password="landbigdata" 
 /> 
+
+<c:set scope="request" var="path" value="${pageContext.request.servletPath}" />
+ 
