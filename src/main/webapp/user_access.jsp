@@ -27,8 +27,8 @@
 
 	<div class="container">
 		<ul class="nav nav-tabs">
-			<li class="nav-item"><a class="nav-link active" href="user_info.jsp?user_id=${param.user_id}">사용자 정보</a></li>
-			<li class="nav-item"><a class="nav-link" href="user_access.jsp?user_id=${param.user_id}">접근 관리</a></li> 
+			<li class="nav-item"><a class="nav-link" href="user_info.jsp?user_id=${param.user_id}">사용자 정보</a></li>
+			<li class="nav-item"><a class="nav-link  active" href="user_access.jsp?user_id=${param.user_id}">접근 관리</a></li> 
 		</ul> 
  
 		<div class="row">
@@ -50,25 +50,8 @@
 						</div>
 						<div class="form-group">
 							<label>등급 : </label> <input type="text" class="form-control" id="user_grade"
-								value="${ row.mgr_grade }" style="width: 60%;"> <span
-								id="user_grade_valid" class="help-block invisible text-danger"> 잘못된 등급입니다.
-							</span>
-						</div>
-						<div class="form-group">
-							<label>이름 : </label> <input type="text" class="form-control" id="user_name"
-								value="${ row.mgr_name }" style="width: 60%;"> <span id="user_name_valid"
-								id="user_name" class="help-block invisible text-danger"> 잘못된 이름입니다. </span>
-						</div>
-						<div class="form-group">
-							<label>비밀번호 : </label> <input type="password" class="form-control" id="user_pass"
-								name="user_pass" style="width: 60%;"> <span id="user_pass_valid"
-								class="help-block invisible text-danger"> 잘못된 비밀번호입니다. </span>
-						</div>
-						<div class="form-group">
-							<label>비밀번호 확인 : </label> <input type="password" class="form-control"
-								id="user_pass2" style="width: 60%;"> <span id="user_pass2_valid"
-								class="help-block invisible text-danger"> 비밀번호가 일치하지 않습니다. </span>
-						</div>
+								value="${ row.mgr_grade }" style="width: 60%;" readonly> 
+						</div> 
 
 						<input type="hidden" name="user_id" value="${ param.user_id }" />
 
