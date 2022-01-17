@@ -27,95 +27,92 @@
 
 	<div class="container">
 		<ul class="nav nav-tabs">
-			<li class="nav-item"><a class="nav-link active" href="user_info.jsp?user_id=${param.user_id}">사용자 정보</a></li>
-			<li class="nav-item"><a class="nav-link" href="user_access.jsp?user_id=${param.user_id}">접근 관리</a></li> 
-		</ul> 
- 
-		<div class="row">
-			<div class="col-sm-12">
-				<br/>
-				<sql:query dataSource="${db}" var="result">
+			<li class="nav-item"><a class="nav-link active"
+				href="user_info.jsp?user_id=${param.user_id}">사용자 정보</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="user_access.jsp?user_id=${param.user_id}">접근 관리</a></li>
+		</ul>
+		
+		<br/>
+
+		<sql:query dataSource="${db}" var="result">
 					SELECT mgr_id, mgr_grade, mgr_name, mgr_pw FROM MA_ADMIN_MGR
 					WHERE mgr_id = ? 
 					LIMIT 1
 					<sql:param value="${ param.user_id }" />
-				</sql:query>
+		</sql:query>
 
-				<c:forEach var="row" items="${result.rows}">
+		<c:forEach var="row" items="${result.rows}">
 
-					<form action="" class="needs-validation" onsubmit="return check_submit();">
-						<div class="form-group">
-							<label>아이디 : </label> <input type="text" class="form-control"
-								value="${ row.mgr_id }" style="width: 60%;" readonly>
-						</div>
-						<div class="form-group">
-							<label>등급 : </label> <input type="text" class="form-control" id="user_grade"
-								value="${ row.mgr_grade }" style="width: 60%;"> <span
-								id="user_grade_valid" class="help-block invisible text-danger"> 잘못된 등급입니다.
-							</span>
-						</div>
-						<div class="form-group">
-							<label>이름 : </label> <input type="text" class="form-control" id="user_name"
-								value="${ row.mgr_name }" style="width: 60%;"> <span id="user_name_valid"
-								id="user_name" class="help-block invisible text-danger"> 잘못된 이름입니다. </span>
-						</div>
-						<div class="form-group">
-							<label>비밀번호 : </label> <input type="password" class="form-control" id="user_pass"
-								name="user_pass" style="width: 60%;"> <span id="user_pass_valid"
-								class="help-block invisible text-danger"> 잘못된 비밀번호입니다. </span>
-						</div>
-						<div class="form-group">
-							<label>비밀번호 확인 : </label> <input type="password" class="form-control"
-								id="user_pass2" style="width: 60%;"> <span id="user_pass2_valid"
-								class="help-block invisible text-danger"> 비밀번호가 일치하지 않습니다. </span>
-						</div>
+			<form action="" class="needs-validation" onsubmit="return check_submit();">
+				<div class="form-group">
+					<label>아이디 : </label> <input type="text" class="form-control" value="${ row.mgr_id }"
+						style="width: 60%;" readonly>
+				</div>
+				<div class="form-group">
+					<label>등급 : </label> <input type="text" class="form-control" id="user_grade"
+						value="${ row.mgr_grade }" style="width: 60%;"> <span id="user_grade_valid"
+						class="help-block invisible text-danger"> 잘못된 등급입니다. </span>
+				</div>
+				<div class="form-group">
+					<label>이름 : </label> <input type="text" class="form-control" id="user_name"
+						value="${ row.mgr_name }" style="width: 60%;"> <span id="user_name_valid"
+						id="user_name" class="help-block invisible text-danger"> 잘못된 이름입니다. </span>
+				</div>
+				<div class="form-group">
+					<label>비밀번호 : </label> <input type="password" class="form-control" id="user_pass"
+						name="user_pass" style="width: 60%;"> <span id="user_pass_valid"
+						class="help-block invisible text-danger"> 잘못된 비밀번호입니다. </span>
+				</div>
+				<div class="form-group">
+					<label>비밀번호 확인 : </label> <input type="password" class="form-control" id="user_pass2"
+						style="width: 60%;"> <span id="user_pass2_valid"
+						class="help-block invisible text-danger"> 비밀번호가 일치하지 않습니다. </span>
+				</div>
 
-						<input type="hidden" name="user_id" value="${ param.user_id }" />
+				<input type="hidden" name="user_id" value="${ param.user_id }" />
 
-						<button type="submit" class="btn btn-primary">수정</button>
+				<button type="submit" class="btn btn-primary">수정</button>
 
-						<script>
-							function check_submit() {
-								var valid = true ;
-								
-								$( ".help-block" ).addClass( "invisible" ) ; 
-								
-								if( valid && $("#user_grade").val().trim().length < 1 ) {
-									$( "#user_grade_valid" ).removeClass( "invisible" ) ; 
-									
-									valid = false ;
-								}
-								
-								if( valid && $("#user_name").val().trim().length < 1 ) {
-									$( "#user_name_valid" ).removeClass( "invisible" ) ; 
-									
-									valid = false ;
-								}
-								
-								var pass1 = $( "#user_pass" ).val().trim() ; 
-								var pass2 = $( "#user_pass2" ).val().trim() ; 
-								
-								if( valid && pass1.length < 1 ) {
-									$( "#user_pass_valid" ).removeClass( "invisible" ) ; 
-									
-									valid = false ;
-								}
-								
-								if( valid && pass2.length < 1 || pass1 != pass2 ) {
-									$( "#user_pass2_valid" ).removeClass( "invisible" ) ;
-									
-									valid = false ; 
-								}
-								
-								return false ; 
-							}
-						</script>
-					</form>
+				<script>
+					function check_submit() {
+						var valid = true;
 
-				</c:forEach>
+						$(".help-block").addClass("invisible");
 
-			</div>
-		</div>
+						if (valid && $("#user_grade").val().trim().length < 1) {
+							$("#user_grade_valid").removeClass("invisible");
+
+							valid = false;
+						}
+
+						if (valid && $("#user_name").val().trim().length < 1) {
+							$("#user_name_valid").removeClass("invisible");
+
+							valid = false;
+						}
+
+						var pass1 = $("#user_pass").val().trim();
+						var pass2 = $("#user_pass2").val().trim();
+
+						if (valid && pass1.length < 1) {
+							$("#user_pass_valid").removeClass("invisible");
+
+							valid = false;
+						}
+
+						if (valid && pass2.length < 1 || pass1 != pass2) {
+							$("#user_pass2_valid").removeClass("invisible");
+
+							valid = false;
+						}
+
+						return false;
+					}
+				</script>
+			</form>
+
+		</c:forEach>
 	</div>
 
 	<jsp:include page="220_footer.jsp" />
