@@ -29,7 +29,7 @@
 	
 </c:forEach>
 
-<c:if test="${ ! empty login_user_id }" >
+<c:if test="${ ! empty sessionScope.login_user_id }" >
 	<c:redirect url="index.jsp" />
 </c:if>
 

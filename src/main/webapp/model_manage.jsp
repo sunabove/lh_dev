@@ -7,7 +7,7 @@
 
 <jsp:include page="100_common.jsp" />
 
-<c:if test="${ empty login_user_id }" >
+<c:if test="${ empty sessionScope.login_user_id }" >
 	<c:redirect url="index.jsp" />
 </c:if>
 
