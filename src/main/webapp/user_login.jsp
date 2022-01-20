@@ -10,8 +10,9 @@
 <c:set scope="request" var="page_title" value="데이터 연계" />
 
 <sql:query dataSource="${db}" var="result" >
-	SELECT mgr_id, mgr_grade, mgr_name, mgr_pw FROM MA_ADMIN_MGR
-	WHERE mgr_id = ? 
+	SELECT "MGR_ID", "MGR_GRADE", "MGR_NAME", "MGR_PW" 
+	FROM "MA_ADMIN_MGR"
+	WHERE "MGR_ID" = ? 
 	LIMIT 1
 	<sql:param value="${ param.user_id }" />
 </sql:query>

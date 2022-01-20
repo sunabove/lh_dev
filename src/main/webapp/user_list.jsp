@@ -27,9 +27,9 @@
 
 	<div class="container">
 		<sql:query dataSource="${db}" var="result">
-				SELECT mgr_id, mgr_grade, mgr_name, mgr_pw, mod_date 
-				FROM MA_ADMIN_MGR
-				ORDER BY mgr_id
+				SELECT "MGR_ID", "MGR_GRADE", "MGR_NAME", "MGR_PW", "MOD_DATE" 
+				FROM "MA_ADMIN_MGR"
+				ORDER BY "MGR_ID"
 				LIMIT 20
 			</sql:query>
 

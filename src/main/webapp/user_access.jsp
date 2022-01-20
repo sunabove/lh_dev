@@ -31,14 +31,19 @@
 				href="user_info.jsp?user_id=${param.user_id}">사용자 정보</a></li>
 			<li class="nav-item"><a class="nav-link  active"
 				href="user_access.jsp?user_id=${param.user_id}">접근 관리</a></li>
+			
+			<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+			<li class="nav-item"><a class="nav-link"
+				href="user_list.jsp?user_id=${param.user_id}">목록</a></li>
 		</ul>
 
 		<br/>
 		<sql:query dataSource="${db}" var="result">
-					SELECT mgr_id, mgr_grade, mgr_name, mgr_pw FROM MA_ADMIN_MGR
-					WHERE mgr_id = ? 
-					LIMIT 1
-					<sql:param value="${ param.user_id }" />
+			SELECT "MGR_ID", "MGR_GRADE", "MGR_NAME", "MGR_PW", "MOD_DATE" 
+			FROM "MA_ADMIN_MGR"
+			WHERE "MGR_ID" = ? 
+			LIMIT 1
+			<sql:param value="${ param.user_id }" />
 		</sql:query>
 
 		<c:forEach var="row" items="${result.rows}">
