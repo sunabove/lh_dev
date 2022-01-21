@@ -19,22 +19,22 @@
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ms-auto my-2 my-lg-0">
 				<li class="nav-item"><a
-					class="nav-link ${fn:contains( path, 'data_manage.jsp' ) ? 'active' : '' }"
+					class="nav-link ${fn:contains( path, 'data_manage.jsp' ) ? 'active font-weight-bolder' : '' }"
 					href="data_manage.jsp">데이터 관리</a></li>
 				<li class="nav-item"><a
-					class="nav-link ${fn:contains( path, 'model_manage.jsp' ) ? 'active' : '' }"
+					class="nav-link ${fn:contains( path, 'model_manage.jsp' ) ? 'active font-weight-bolder' : '' }"
 					href="model_manage.jsp">모델 관리</a></li>
 				<li class="nav-item"><a
-					class="nav-link ${fn:contains( path, 'user_list.jsp' ) ? 'active' : '' }"
+					class="nav-link ${fn:contains( path, 'user_list.jsp' ) ? 'active font-weight-bolder' : '' }"
 					href="user_list.jsp"> 사용자 관리 </a></li>
 
 				<c:if test="${ not empty login_user_id }">
 		            &nbsp;
 		            <li class="nav-item"><a
-						class="nav-link ${fn:contains( path, 'user_info.jsp' ) ? 'active' : '' }"
+						class="nav-link ${fn:contains( path, 'user_info.jsp' ) ? 'active font-weight-bolder' : '' }"
 						href="user_info.jsp?user_id=${login_user_id}"> ${ login_user_id } </a></li>
 					<li class="nav-item"><a
-						class="nav-link ${fn:contains( path, 'user_logout.jsp' ) ? 'active' : '' }"
+						class="nav-link ${fn:contains( path, 'user_logout.jsp' ) ? 'active font-weight-bolder' : '' }"
 						href="user_logout.jsp"> 로그아웃 </a></li>
 				</c:if>
 			</ul>
