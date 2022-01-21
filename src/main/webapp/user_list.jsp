@@ -30,7 +30,7 @@
 				SELECT "MGR_ID", "MGR_GRADE", "MGR_NAME", "MGR_PW", "MOD_DATE" 
 				FROM "MA_ADMIN_MGR"
 				ORDER BY "MGR_ID"
-				LIMIT 20
+				LIMIT 10
 			</sql:query>
 
 		<h3>

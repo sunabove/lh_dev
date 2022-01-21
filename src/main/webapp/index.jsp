@@ -8,39 +8,34 @@
 <jsp:include page="100_common.jsp" />
 
 <c:set var="a" value="1,2354" />
-<c:set scope="request" var="page_title" value="메터 데이터 관리" />
+<c:set scope="request" var="page_title" value="데이터 연계" />
 
 <!DOCTYPE html>
 <html lang="ko">
 
 <head>
-<jsp:include page="200_html_head.jsp" /> 
+<jsp:include page="200_html_head.jsp" />
 </head>
 
 <body>
 
 	<jsp:include page="210_header.jsp" />
 
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-12">
-				<h3> 데이터 관리 / 모형 관리 / 사용자 관리 </h3>
-				<c:if test="${empty login_user_id}" >
-					<p>
-						
-							<a href="user_login.jsp" >사용자 로그인</a> 
-					</p>
-					<a href="user_login.jsp" >
-						<img src="img/logo_01.png" title="로그인" />
-					</a>
-				</c:if>
-				<c:if test="${!empty login_user_id}" > 
-					<a href="data_manage.jsp" >
-						<img src="img/logo_01.png" title="로그인" />
-					</a>
-				</c:if>
-			</div>
-		</div>
+	<div class="container text-center">
+		<ul class="nav nav-tabs">
+			<li class="nav-item"><a class="nav-link active" href="user_login.jsp">사용자 로그인</a></li>
+			<li class="nav-item"><a class="nav-link" href="user_create.jsp">사용자 가입</a></li>
+		</ul>
+
+		<h3>&nbsp;</h3>
+		<c:if test="${empty login_user_id}">
+			<a href="user_login.jsp"> <img src="img/logo_01.png" title="로그인" />
+			</a>
+		</c:if>
+		<c:if test="${!empty login_user_id}">
+			<a href="data_manage.jsp"> <img src="img/logo_01.png" title="로그인" />
+			</a>
+		</c:if>
 	</div>
 
 	<jsp:include page="220_footer.jsp" />
