@@ -78,7 +78,7 @@
 					<td>&nbsp;</td>
 				</tr>
 			</tfoot>
-		</table> 
+		</table>
 	</div>
 
 	<jsp:include page="220_footer.jsp" />

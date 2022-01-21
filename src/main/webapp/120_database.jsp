@@ -35,7 +35,9 @@
 		INSERT INTO access_url(url_id, url_text, url_desc) values( 3, 'user_list.jsp', '사용자 관리' );
 		INSERT INTO access_url(url_id, url_text, url_desc) values( 4, 'user_info.jsp', '사용자 정보' );
 		INSERT INTO access_url(url_id, url_text, url_desc) values( 5, 'user_login.jsp', '로그인' );
-		INSERT INTO access_url(url_id, url_text, url_desc) values( 6, 'user_logout.jsp', '로그아웃' );	 
+		INSERT INTO access_url(url_id, url_text, url_desc) values( 6, 'user_logout.jsp', '로그아웃' );
+		INSERT INTO access_url(url_id, url_text, url_desc) values( 7, 'data_info.jsp', '데이터 정보' );	 
+		INSERT INTO access_url(url_id, url_text, url_desc) values( 8, 'model_info.jsp', '모델 정보' );
 		
 		INSERT INTO user_access( user_id, user_url_id, url_access ) values( 'admin', 1, 1 );
 		INSERT INTO user_access( user_id, user_url_id, url_access ) values( 'admin', 2, 1 );
@@ -47,18 +49,93 @@
 		 , model_apply_date TIMESTAMP, model_apply_user_id VARCHAR(200)   );
 		 
 		INSERT INTO meta_data
-		( data_id, org_file, dest_loc, data_src, file_fmt, file_usage
+		( org_file, dest_loc, data_src, file_fmt, file_usage
 		  , get_date, upload_date, model_apply_date, model_apply_user_id )
 		VALUES
-		( 1, '전국모형)_거시계량모형_결과파일_1025.xlsx', '/data/거시모형', 'KLIS', 'XLS', '모형 분석'
-		  , '2021-01-05 14:01:10-08', '2021-01-06 14:01:10-08', '2021-10-06 15:01:10-08', 'admin' );
+		( '전국모형)_거시계량모형_결과파일_1025.xlsx', '/data/거시모형', 'KLIS', 'XLS', '모형 분석'
+		  , '2021-01-05 14:01:10-08', '2021-01-06 14:01:10-08', '2021-10-06 15:01:10-08', 'admin' ) ;
 		
 		INSERT INTO meta_data
-		( data_id, org_file, dest_loc, data_src, file_fmt, file_usage
+		( org_file, dest_loc, data_src, file_fmt, file_usage
 		  , get_date, upload_date, model_apply_date, model_apply_user_id )
 		VALUES
-		( 2, '전국모형)_거시계량모형_결과파일_1025.xlsx', '/data/거시모형', 'KLIS', 'XLS', '모형 분석'
-		  , '2021-01-05 14:01:10-08', '2021-01-06 14:01:10-08', '2021-10-06 15:01:10-08', 'admin' )
+		( '(비수도권모형)_거시계량모형_결과파일_1025.xlsx', '/data/결과파일', 'KLIS', 'XLS', '결과파일'
+		  , '2021-01-05 14:01:10-08', '2021-01-06 14:01:10-08', '2021-10-06 15:01:10-08', 'admin' ) ; 
+		  
+		INSERT INTO meta_data
+		( org_file, dest_loc, data_src, file_fmt, file_usage
+		  , get_date, upload_date, model_apply_date, model_apply_user_id )
+		VALUES
+		( '엑셀_CSV_변환', '/data/엑셀_CSV_변환', 'KLIS', 'CSV', '엑셀_CSV_변환'
+		  , '2021-01-05 14:01:10-08', '2021-01-06 14:01:10-08', '2021-10-06 15:01:10-08', 'admin' ) ;
+		  
+	    INSERT INTO meta_data
+		( org_file, dest_loc, data_src, file_fmt, file_usage
+		  , get_date, upload_date, model_apply_date, model_apply_user_id )
+		VALUES
+		( 'oldhousing.csv', '/data/엑셀_CSV_변환', 'KLIS', 'CSV', '엑셀_CSV_변환'
+		  , '2021-01-05 14:01:10-08', '2021-01-06 14:01:10-08', '2021-10-06 15:01:10-08', 'admin' ) ;  
 		
+		
+		
+		INSERT INTO meta_data
+		( org_file, dest_loc, data_src, file_fmt, file_usage
+		  , get_date, upload_date, model_apply_date, model_apply_user_id )
+		VALUES
+		( '전국모형)_거시계량모형_결과파일_1027.xlsx', '/data/거시모형', 'KLIS', 'XLS', '모형 분석'
+		  , '2021-01-05 14:01:10-08', '2021-01-06 14:01:10-08', '2021-10-06 15:01:10-08', 'admin' ) ;
+		
+		INSERT INTO meta_data
+		( org_file, dest_loc, data_src, file_fmt, file_usage
+		  , get_date, upload_date, model_apply_date, model_apply_user_id )
+		VALUES
+		( '(비수도권모형)_거시계량모형_결과파일_1028.xlsx', '/data/결과파일', 'KLIS', 'XLS', '결과파일'
+		  , '2021-01-05 14:01:10-08', '2021-01-06 14:01:10-08', '2021-10-06 15:01:10-08', 'admin' ) ; 
+		  
+		INSERT INTO meta_data
+		( org_file, dest_loc, data_src, file_fmt, file_usage
+		  , get_date, upload_date, model_apply_date, model_apply_user_id )
+		VALUES
+		( '엑셀_CSV_변환', '/data/엑셀_CSV_변환', 'KLIS', 'CSV', '엑셀_CSV_변환'
+		  , '2021-01-05 14:01:10-08', '2021-01-06 14:01:10-08', '2021-10-06 15:01:10-08', 'admin' ) ;
+		  
+	    INSERT INTO meta_data
+		( org_file, dest_loc, data_src, file_fmt, file_usage
+		  , get_date, upload_date, model_apply_date, model_apply_user_id )
+		VALUES
+		( 'oldhousing.csv', '/data/엑셀_CSV_변환', 'KLIS', 'CSV', '엑셀_CSV_변환'
+		  , '2021-01-05 14:01:10-08', '2021-01-06 14:01:10-08', '2021-10-06 15:01:10-08', 'admin' ) ;  
+		  
+		
+		
+		INSERT INTO meta_data
+		( org_file, dest_loc, data_src, file_fmt, file_usage
+		  , get_date, upload_date, model_apply_date, model_apply_user_id )
+		VALUES
+		( '전국모형)_거시계량모형_결과파일_1029.xlsx', '/data/거시모형', 'KLIS', 'XLS', '모형 분석'
+		  , '2021-01-05 14:01:10-08', '2021-01-06 14:01:10-08', '2021-10-06 15:01:10-08', 'admin' ) ;
+		
+		INSERT INTO meta_data
+		( org_file, dest_loc, data_src, file_fmt, file_usage
+		  , get_date, upload_date, model_apply_date, model_apply_user_id )
+		VALUES
+		( '(비수도권모형)_거시계량모형_결과파일_1029.xlsx', '/data/결과파일', 'KLIS', 'XLS', '결과파일'
+		  , '2021-01-05 14:01:10-08', '2021-01-06 14:01:10-08', '2021-10-06 15:01:10-08', 'admin' ) ; 
+		  
+		INSERT INTO meta_data
+		( org_file, dest_loc, data_src, file_fmt, file_usage
+		  , get_date, upload_date, model_apply_date, model_apply_user_id )
+		VALUES
+		( '엑셀_CSV_변환', '/data/엑셀_CSV_변환', 'KLIS', 'CSV', '엑셀_CSV_변환'
+		  , '2021-01-05 14:01:10-08', '2021-01-06 14:01:10-08', '2021-10-06 15:01:10-08', 'admin' ) ;
+		  
+	    INSERT INTO meta_data
+		( org_file, dest_loc, data_src, file_fmt, file_usage
+		  , get_date, upload_date, model_apply_date, model_apply_user_id )
+		VALUES
+		( 'oldhousing.csv', '/data/엑셀_CSV_변환', 'KLIS', 'CSV', '엑셀_CSV_변환'
+		  , '2021-01-05 14:01:10-08', '2021-01-06 14:01:10-08', '2021-10-06 15:01:10-08', 'admin' ) ;  
+		  
+		  
 	</sql:update>
 </c:if>
