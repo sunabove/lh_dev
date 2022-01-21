@@ -31,13 +31,13 @@
 				href="user_info.jsp?user_id=${param.user_id}">사용자 정보</a></li>
 			<li class="nav-item"><a class="nav-link  active"
 				href="user_access.jsp?user_id=${param.user_id}">접근 관리</a></li>
-			
+
 			<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 			<li class="nav-item"><a class="nav-link"
 				href="user_list.jsp?user_id=${param.user_id}">목록</a></li>
 		</ul>
 
-		<br/>
+		<br />
 		<sql:query dataSource="${db}" var="result">
 			SELECT "MGR_ID", "MGR_GRADE", "MGR_NAME", "MGR_PW", "MOD_DATE" 
 			FROM "MA_ADMIN_MGR"
@@ -46,61 +46,38 @@
 			<sql:param value="${ param.user_id }" />
 		</sql:query>
 
-		<c:forEach var="row" items="${result.rows}">
-
-			<form action="" class="needs-validation" onsubmit="return check_submit();">
-				<div class="form-group">
-					<label>아이디 : </label> <input type="text" class="form-control" value="${ row.mgr_id }"
-						style="width: 60%;" readonly>
-				</div>
-				<div class="form-group">
-					<label>등급 : </label> <input type="text" class="form-control" id="user_grade"
-						value="${ row.mgr_grade }" style="width: 60%;" readonly>
-				</div>
-
-				<input type="hidden" name="user_id" value="${ param.user_id }" />
-
-				<button type="submit" class="btn btn-primary">수정</button>
-
-				<script>
-					function check_submit() {
-						var valid = true;
-
-						$(".help-block").addClass("invisible");
-
-						if (valid && $("#user_grade").val().trim().length < 1) {
-							$("#user_grade_valid").removeClass("invisible");
-
-							valid = false;
-						}
-
-						if (valid && $("#user_name").val().trim().length < 1) {
-							$("#user_name_valid").removeClass("invisible");
-
-							valid = false;
-						}
-
-						var pass1 = $("#user_pass").val().trim();
-						var pass2 = $("#user_pass2").val().trim();
-
-						if (valid && pass1.length < 1) {
-							$("#user_pass_valid").removeClass("invisible");
-
-							valid = false;
-						}
-
-						if (valid && pass2.length < 1 || pass1 != pass2) {
-							$("#user_pass2_valid").removeClass("invisible");
-
-							valid = false;
-						}
-
-						return false;
-					}
-				</script>
-			</form>
-
-		</c:forEach>
+		<table class="table table-hover table-stripped">
+			<thead>
+				<tr>
+					<th>메뉴 (URL)</th>
+					<th>사용 가능</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>John</td>
+					<td><input type="checkbox"></td>
+				</tr>
+				<tr>
+					<td>Mary</td>
+					<td><input type="checkbox"></td>
+				</tr>
+				<tr>
+					<td>July</td>
+					<td><input type="checkbox"></td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td>&nbsp;</td>
+					<td colspan="100%">
+						<button type="submit" class="btn btn-primary">저장</button>
+					</td>
+					<td>&nbsp;</td>
+				</tr>
+			</tfoot>
+		</table>
+		<br/><br/><br/><br/>
 	</div>
 
 	<jsp:include page="220_footer.jsp" />
