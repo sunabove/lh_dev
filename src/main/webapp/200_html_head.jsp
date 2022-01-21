@@ -8,7 +8,9 @@
  <title>데이터 연계</title>
  <meta charset="utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
- <link   href="${contextPath}/webjars/bootstrap/4.6.1/css/bootstrap.min.css" rel="stylesheet" >
+ <link rel="stylesheet" href="${contextPath}/webjars/bootstrap/4.6.1/css/bootstrap.min.css">
+ <link rel="stylesheet" href="${contextPath}/webjars/font-awesome/5.15.4/css/all.min.css" />
+ 
  <script src="${contextPath}/webjars/jquery/3.5.1/jquery.slim.min.js"></script>
  <script src="${contextPath}/webjars/popper.js/1.16.0/popper.min.js"></script>
  <script src="${contextPath}/webjars/bootstrap/4.6.1/js/bootstrap.bundle.min.js"></script>

@@ -28,13 +28,13 @@
 	<div class="container">
 		<ul class="nav nav-tabs">
 			<li class="nav-item"><a class="nav-link active"
-				href="user_info.jsp?user_id=${param.user_id}">사용자 정보</a></li>
+				href="user_info.jsp?user_id=${param.user_id}"> <i class="far fa-user"></i>&nbsp; 사용자 정보</a></li>
 			<li class="nav-item"><a class="nav-link"
-				href="user_access.jsp?user_id=${param.user_id}">메뉴 관리</a></li>
+				href="user_access.jsp?user_id=${param.user_id}"> <i class="fas fa-user-tag"></i> 메뉴 관리</a></li>
 				
 			<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 			<li class="nav-item"><a class="nav-link"
-				href="user_list.jsp?user_id=${param.user_id}">목록</a></li>
+				href="user_list.jsp?user_id=${param.user_id}"><i class="fas fa-list"></i>&nbsp; 목록</a></li>
 		</ul>
 		
 		<br/>

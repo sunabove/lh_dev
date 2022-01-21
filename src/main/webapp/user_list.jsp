@@ -35,7 +35,7 @@
 
 		<ul class="nav nav-tabs">
 			<li class="nav-item"><a class="nav-link active"
-				href="user_list.jsp">사용자 목록</a></li>  
+				href="user_list.jsp"><i class="fas fa-list"></i>&nbsp; 사용자 목록</a></li>  
 		</ul>
 		
 		<br/>
@@ -50,13 +50,18 @@
 				</tr>
 			</thead>
 			<tbody>
+				<c:set var="rowNo" value="${ 0 }" />
 				<c:forEach var="row" items="${result.rows}">
+					<c:set var="rowNo" value="${ rowNo + 1 }" />
 					<tr>
 						<td><a href="user_info.jsp?user_id=${row.mgr_id}">${ row.mgr_id }</a></td>
 						<td>${ row.mgr_grade }</td>
 						<td>${ row.mgr_name }</td>
 						<td>${ row.mod_date }</td>
 					</tr>
+				</c:forEach>
+				<c:forEach var="i" begin="${ rowNo }" end="9">
+					<tr><td colspan="100%">&nbsp;</td></tr>
 				</c:forEach>
 			</tbody> 
 			<tfoot> 

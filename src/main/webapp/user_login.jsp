@@ -7,7 +7,7 @@
 
 <jsp:include page="100_common.jsp" />
 
-<c:set scope="request" var="page_title" value="데이터 연계" />
+<c:set scope="request" var="page_title" value="로그인" />
 
 <sql:query dataSource="${db}" var="result" >
 	SELECT "MGR_ID", "MGR_GRADE", "MGR_NAME", "MGR_PW" 
@@ -46,8 +46,13 @@
 	<jsp:include page="210_header.jsp" />
 
 	<div class="container">
-		<h2> 사용자 로그인 ${ login_user_id }</h2>
+		<ul class="nav nav-tabs">
+			<li class="nav-item"><a class="nav-link active" href="user_login.jsp"> <i class="fas fa-sign-in-alt"></i> 사용자 로그인</a></li>
+			<li class="nav-item"><a class="nav-link" href="user_create.jsp"> <i class="fas fa-user-plus"></i> 사용자 가입</a></li>
+		</ul>
+		
 		<br/>
+		
 		<form action="" id="myForm" method="GET" onsubmit="return check_submit();" >
 			<div class="form-group">
 				<label for="email">아이디:</label>

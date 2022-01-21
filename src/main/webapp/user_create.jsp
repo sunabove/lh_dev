@@ -12,7 +12,7 @@
 </c:if>
 
 <c:set var="a" value="1,2354" />
-<c:set scope="request" var="page_title" value="회원 가입" />
+<c:set scope="request" var="page_title" value="사용자 가입" />
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -27,11 +27,11 @@
 
 	<div class="container">
 		<ul class="nav nav-tabs">
-			<li class="nav-item"><a class="nav-link active" href="user_create.jsp">사용자 가입</a></li>
-			<li class="nav-item"><a class="nav-link" href="user_login.jsp">사용자 로그인</a></li> 
-		</ul> 
+			<li class="nav-item"><a class="nav-link" href="user_login.jsp"> <i class="fas fa-sign-in-alt"></i> 사용자 로그인</a></li>
+			<li class="nav-item"><a class="nav-link active" href="user_create.jsp"> <i class="fas fa-user-plus"></i> 사용자 가입</a></li>
+		</ul>
 
-		<br />
+		<br/>
 
 		<sql:query dataSource="${db}" var="result">
 			SELECT "MGR_ID", "MGR_GRADE", "MGR_NAME", "MGR_PW", "MOD_DATE" 

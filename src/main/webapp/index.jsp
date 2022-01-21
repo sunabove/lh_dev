@@ -23,8 +23,8 @@
 
 	<div class="container text-center">
 		<ul class="nav nav-tabs">
-			<li class="nav-item"><a class="nav-link active" href="user_login.jsp">사용자 로그인</a></li>
-			<li class="nav-item"><a class="nav-link" href="user_create.jsp">사용자 가입</a></li>
+			<li class="nav-item"><a class="nav-link active" href="user_login.jsp"> <i class="fas fa-sign-in-alt"></i> 사용자 로그인</a></li>
+			<li class="nav-item"><a class="nav-link" href="user_create.jsp"> <i class="fas fa-user-plus"></i> 사용자 가입</a></li>
 		</ul>
 
 		<h3>&nbsp;</h3>
