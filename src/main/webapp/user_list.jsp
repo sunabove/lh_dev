@@ -47,16 +47,36 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="row" items="${result.rows}">					
+				<c:forEach var="row" items="${result.rows}">
 					<tr>
-						<td><a href="user_info.jsp?user_id=${row.mgr_id}" >${ row.mgr_id }</a></td>
+						<td><a href="user_info.jsp?user_id=${row.mgr_id}">${ row.mgr_id }</a></td>
 						<td>${ row.mgr_grade }</td>
-						<td>${ row.mgr_name }</td> 
+						<td>${ row.mgr_name }</td>
 						<td>${ row.mod_date }</td>
-					</tr> 
-					
+					</tr>
 				</c:forEach>
-			</tbody>
+			</tbody> 
+			<tfoot> 
+				<tr>
+					<td>&nbsp;</td>					
+					<td colspan="100%">
+						<ul class="pagination">
+							<li class="page-item"><a class="page-link" href="#">Prev</a></li>
+							<li class="page-item active"><a class="page-link" href="#">1</a></li>
+							<li class="page-item"><a class="page-link" href="#">2</a></li>
+							<li class="page-item"><a class="page-link" href="#">3</a></li>
+							<li class="page-item"><a class="page-link" href="#">4</a></li>
+							<li class="page-item"><a class="page-link" href="#">5</a></li>
+							<li class="page-item"><a class="page-link" href="#">6</a></li>
+							<li class="page-item"><a class="page-link" href="#">7</a></li>
+							<li class="page-item"><a class="page-link" href="#">8</a></li>
+							<li class="page-item"><a class="page-link" href="#">9</a></li>
+							<li class="page-item"><a class="page-link" href="#">Next</a></li>
+						</ul>
+					</td>
+					<td>&nbsp;</td>
+				</tr>
+			</tfoot>
 		</table>
 	</div>
 
