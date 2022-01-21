@@ -30,7 +30,7 @@
 			<li class="nav-item"><a class="nav-link"
 				href="user_info.jsp?user_id=${param.user_id}">사용자 정보</a></li>
 			<li class="nav-item"><a class="nav-link  active"
-				href="user_access.jsp?user_id=${param.user_id}">접근 관리</a></li>
+				href="user_access.jsp?user_id=${param.user_id}">메뉴 관리</a></li>
 
 			<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 			<li class="nav-item"><a class="nav-link"
@@ -39,33 +39,38 @@
 
 		<br />
 		<sql:query dataSource="${db}" var="result">
-			SELECT "MGR_ID", "MGR_GRADE", "MGR_NAME", "MGR_PW", "MOD_DATE" 
-			FROM "MA_ADMIN_MGR"
-			WHERE "MGR_ID" = ? 
-			LIMIT 1
+			SELECT url_id, url_text, url_desc, user_id, COALESCE( url_access, 1 ) url_access
+			FROM access_url 
+			LEFT JOIN user_access ON ( url_id = user_url_id AND user_id = ? )
+			ORDER BY url_id
 			<sql:param value="${ param.user_id }" />
 		</sql:query>
 
 		<table class="table table-hover table-stripped">
 			<thead>
-				<tr>
+				<tr class="text-center">
 					<th>메뉴 (URL)</th>
 					<th>사용 가능</th>
+					<th>설명</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>John</td>
-					<td><input type="checkbox"></td>
-				</tr>
-				<tr>
-					<td>Mary</td>
-					<td><input type="checkbox"></td>
-				</tr>
-				<tr>
-					<td>July</td>
-					<td><input type="checkbox"></td>
-				</tr>
+				<c:set var="rowNo" value="${ 0 }" />
+				<c:forEach var="row" items="${result.rows}">
+					<c:set var="rowNo" value="${ rowNo + 1 }" />
+					<tr>
+						<td class="text-center">${ row.url_text }</td>
+						<td class="text-center"><input type="checkbox"
+							${ row.url_access == 1 ? 'checked' : '' }></td>
+						<td>${ row.url_desc}</td>
+					</tr>
+				</c:forEach>
+
+				<c:forEach var="i" begin="${ rowNo }" end="9">
+					<tr>
+						<td colspan="100%">&nbsp;</td>
+					</tr>
+				</c:forEach>
 			</tbody>
 			<tfoot>
 				<tr>
@@ -77,7 +82,7 @@
 				</tr>
 			</tfoot>
 		</table>
-		<br/><br/><br/><br/>
+		<br /> <br /> <br /> <br />
 	</div>
 
 	<jsp:include page="220_footer.jsp" />

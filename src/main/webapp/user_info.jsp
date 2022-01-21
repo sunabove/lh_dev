@@ -30,7 +30,7 @@
 			<li class="nav-item"><a class="nav-link active"
 				href="user_info.jsp?user_id=${param.user_id}">사용자 정보</a></li>
 			<li class="nav-item"><a class="nav-link"
-				href="user_access.jsp?user_id=${param.user_id}">접근 관리</a></li>
+				href="user_access.jsp?user_id=${param.user_id}">메뉴 관리</a></li>
 				
 			<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 			<li class="nav-item"><a class="nav-link"

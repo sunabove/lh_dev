@@ -33,9 +33,12 @@
 				LIMIT 10
 			</sql:query>
 
-		<h3>
-			사용자 목록 <br/>
-		</h3>
+		<ul class="nav nav-tabs">
+			<li class="nav-item"><a class="nav-link active"
+				href="user_list.jsp">사용자 목록</a></li>  
+		</ul>
+		
+		<br/>
 
 		<table class="table table-hover text-center">
 			<thead>
