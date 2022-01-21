@@ -71,7 +71,7 @@
 
 			<input type="hidden" name="user_id" value="${ param.user_id }" />
 
-			<button type="submit" class="btn btn-primary">수정</button>
+			<button type="submit" class="btn btn-primary"> 가입 </button>
 
 			<script>
 				function check_submit() {

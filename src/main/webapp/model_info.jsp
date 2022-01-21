@@ -12,7 +12,7 @@
 </c:if>
 
 <c:set var="a" value="1,2354" />
-<c:set scope="request" var="page_title" value="데이터 관리" />
+<c:set scope="request" var="page_title" value="모델 관리" />
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -27,11 +27,11 @@
 
 	<div class="container">
 		<ul class="nav nav-tabs">
-			<li class="nav-item"><a class="nav-link " href="data_manage.jsp"><i
-					class="fas fa-list"></i>&nbsp; 데이터 목록</a></li>
+			<li class="nav-item"><a class="nav-link " href="model_manage.jsp"><i
+					class="fas fa-list"></i>&nbsp; 모델 목록</a></li>
 			<li class="nav-item"><a class="nav-link active"
-				href="data_info.jsp?data_id=${param.data_id}"><i class="fas fa-file-excel"></i>&nbsp;
-					데이터 정보</a></li>
+				href="model_info.jsp?data_id=${param.data_id}"><i class="fas fa-hotel"></i>&nbsp;
+					모델 정보</a></li>
 		</ul>
 		<br />
 
@@ -55,35 +55,35 @@
 					<div class="input-group mb-1">
 						<div class="input-group-append">
 							<span class="input-group-text" style="width: 160px;"><i
-								class="fas fa-file-alt"></i>&nbsp; 원본 파일명</span>
+								class="fas fa-file-alt"></i>&nbsp; 모델 파일명</span>
 						</div>
 						<input type="text" class="form-control" value="${ row.org_file }">
 					</div>
 					<div class="input-group mb-1">
 						<div class="input-group-append">
 							<span class="input-group-text" style="width: 160px;"><i
-								class="fas fa-folder"></i>&nbsp; 적재 위치</span>
+								class="fas fa-folder"></i>&nbsp; 모델 위치</span>
 						</div>
 						<input type="text" class="form-control" value="${ row.dest_loc }">
 					</div>
 					<div class="input-group mb-1">
 						<div class="input-group-append">
 							<span class="input-group-text" style="width: 160px;"><i class="fas fa-table"></i>&nbsp;
-								데이터 출처</span>
+								모델 출처</span>
 						</div>
 						<input type="text" class="form-control" value="${ row.data_src }">
 					</div>
 					<div class="input-group mb-1">
 						<div class="input-group-append">
 							<span class="input-group-text" style="width: 160px;"><i
-								class="fas fa-file-excel"></i>&nbsp; 파일 포맷</span>
+								class="fas fa-file-excel"></i>&nbsp; 모델 포맷</span>
 						</div>
 						<input type="text" class="form-control" value="${ row.file_fmt }">
 					</div>
 					<div class="input-group mb-1">
 						<div class="input-group-append">
 							<span class="input-group-text" style="width: 160px;"><i
-								class="fas fa-info-circle"></i>&nbsp; 파일 용도</span>
+								class="fas fa-info-circle"></i>&nbsp; 모델 용도</span>
 						</div>
 						<input type="text" class="form-control" value="${ row.file_usage }">
 					</div>
@@ -111,9 +111,8 @@
 					
 					<br/>
 
-					<button type="button" class="btn btn-warning">재실행</button>
-					<button type="button" class="btn btn-secondary">삭제</button>
-					<button type="button" class="btn btn-primary">완료</button>
+					<button type="button" class="btn btn-primary">모델 적용</button>
+					<button type="button" class="btn btn-secondary">모델 삭제</button>
 					<button type="button" class="btn btn-info disabled">진행</button>
 					<button type="button" class="btn btn-danger disabled">실패</button>
 					<button type="button" class="btn btn-dark disabled">에러</button>
