@@ -6,8 +6,16 @@ public class Password {
 
 	private static final String securityKey = "stlogic";
 	
+	public String getEncode( String password ) {
+		return this.encrypt(password);
+	}
+	
 	public String getEncrypt( String password ) {
 		return this.encrypt(password);
+	}
+	
+	public String encode( String password ) {
+		return encrypt( password );
 	}
 	
 	public String encrypt( String password ) {

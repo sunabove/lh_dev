@@ -12,12 +12,17 @@
 <sql:query dataSource="${db}" var="result" >
 	SELECT "MGR_ID", "MGR_GRADE", "MGR_NAME", "MGR_PW" 
 	FROM "MA_ADMIN_MGR"
-	WHERE "MGR_ID" = ? 
+	WHERE "MGR_ID" = ? AND "MGR_PW" = ?
 	LIMIT 1
 	<sql:param value="${ param.user_id }" />
+	<sql:param value="${ password.encode( param.user_pass ) }" />
 </sql:query>
 
+<c:set scope="request" var="loginError" value="잘못된 사용자정보입니다." />
+
 <c:forEach var = "row" items = "${result.rows}">
+	<c:set scope="request" var="loginError" value="" />
+	
 	<c:set var="mgr_id" value="${ row.mgr_id }" /> 
 	<c:set var="mgr_grade" value="${ row.mgr_grade }" />
 	<c:set var="mgr_name" value="${ row.mgr_name }" />
@@ -61,7 +66,7 @@
 					placeholder="아이디 입력" value="${param.user_id}"/>
 				<c:if test="${ ! empty param.user_id }">
 					<span id="user_id_valid" class="help-block text-danger">
-						잘못된 아이디입니다. 
+						${ loginError } 
 					</span>
 				</c:if>
 				<c:if test="${ empty param.user_id }">

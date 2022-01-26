@@ -10,6 +10,8 @@
 	user="landbigdata" password="landbigdata" 
 /> 
 
+<c:set var="dbInit" value="${ false }" />
+
 <c:catch var="catchException">
 	<sql:update dataSource="${db}" var="result">
 		CREATE VIEW USERS AS 
@@ -17,10 +19,14 @@
 		"MGR_PW" user_pass, "MOD_DATE" mod_date
 		FROM "MA_ADMIN_MGR"
 	</sql:update>
+	
+	<c:set var="dbInit" value="${ true }" />
 </c:catch>
 
-<c:if test="${true || catchException == null}">
+<c:if test="${ dbInit }">
 	<!-- 사용자 뷰가 생성 되면 DB를 초기화 한다. -->
+	<% System.out.println( "Db Init"); %>
+	
 	<!--  db init -->
 	<sql:update dataSource="${db}" var="result">
 		DROP TABLE if exists access_url cascade ;

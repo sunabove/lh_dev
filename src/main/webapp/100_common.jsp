@@ -8,4 +8,6 @@
 <c:set scope="application" var="contextPath" value="${pageContext.request.contextPath}" />
 <c:set scope="request" var="path" value="${pageContext.request.servletPath}" />
 
+<jsp:useBean scope="application" id="password" class="data.Password"/> 
+
 <jsp:include page="120_database.jsp" />
