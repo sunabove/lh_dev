@@ -87,7 +87,7 @@
 			<div class="form-group form-check">
 				<label class="form-check-label">
 				<input class="form-check-input"
-					type="checkbox" name="remember"> 아이디 저장
+					type="checkbox" id="save_id" onclick="save_id_on_cookie();"> 아이디 저장
 				</label>
 			</div>
 			
@@ -96,8 +96,37 @@
 			<button type="submit" class="btn btn-primary" >로그인</button>
 		</form>
 		<script>
+		
+			$( document ).ready(function() {
+			    console.log( "document ready!" );
+			    
+			    user_id = $.cookie( 'user_id' );
+			    console.log( "user_id = ", user_id );
+			    
+			    if( null != user_id && user_id.length > 0 ) {
+			    	$( "#user_id" ).val( user_id ) ; 
+			    	$( "#save_id" ).attr( "checked", true ) ; 
+			    }
+			});
+		
+			function save_id_on_cookie() {
+				$save_id = $( "#save_id" )
+				
+				checked = $save_id.is(":checked") 
+				
+				console.log( "checked = ", checked )
+				
+				if( ! checked ) {
+					$.cookie( 'user_id', '', { expires: 31 });
+				} else { 
+					$.cookie( 'user_id', $( "#user_id" ).val(), { expires: 31 });
+				}
+			}
+			
 			function check_submit() {
 				var valid = true ;
+				
+				save_id_on_cookie();
 				
 				if( $( "#user_id").val().trim().length < 2 ) { 
 					var form = $( "#user_id_valid" ) ; 

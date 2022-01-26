@@ -12,5 +12,7 @@
  <link rel="stylesheet" href="${contextPath}/webjars/font-awesome/5.15.4/css/all.min.css" />
  
  <script src="${contextPath}/webjars/jquery/3.5.1/jquery.slim.min.js"></script>
+ <script src="${contextPath}/webjars/js-cookie/2.1.0/js.cookie.js"></script>
+ <script src="${contextPath}/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js"></script>
  <script src="${contextPath}/webjars/popper.js/1.16.0/popper.min.js"></script>
  <script src="${contextPath}/webjars/bootstrap/4.6.1/js/bootstrap.bundle.min.js"></script>

@@ -50,7 +50,7 @@
 			</div>
 			<div class="form-group">
 				<label>등급 : </label> <input type="text" class="form-control" id="user_grade"
-					value="${ row.mgr_grade }" style="width: 60%;"> <span id="user_grade_valid"
+					value="admin" style="width: 60%;" readonly> <span id="user_grade_valid"
 					class="help-block invisible text-danger"> 잘못된 등급입니다. </span>
 			</div>
 			<div class="form-group">
