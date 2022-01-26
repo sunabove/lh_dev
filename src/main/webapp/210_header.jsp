@@ -44,5 +44,8 @@
 
 <div class="container text-center py-0">
 	<h1>${page_title}</h1>
+	<c:if test="${ ! empty param.message }" >
+		<h2>${ param.message }</h2> 
+	</c:if>
 </div>
 

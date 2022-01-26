@@ -7,7 +7,6 @@
 
 <jsp:include page="100_common.jsp" />
 
-<c:set var="a" value="1,2354" />
 <c:set scope="request" var="page_title" value="데이터 연계" />
 
 <!DOCTYPE html>

@@ -11,7 +11,6 @@
 	<c:redirect url="index.jsp" />
 </c:if>
 
-<c:set var="a" value="1,2354" />
 <c:set scope="request" var="page_title" value="사용자 가입" />
 
 <!DOCTYPE html>
@@ -23,6 +22,7 @@
 
 <c:if test="${! empty param.user_id && ! empty param.user_pass }">
 	<c:set var="user_exists" value="${ false }" />
+
 	<sql:query dataSource="${db}" var="result">
 		SELECT "MGR_ID", "MGR_GRADE", "MGR_NAME", "MGR_PW", "MOD_DATE" 
 		FROM "MA_ADMIN_MGR"
@@ -36,24 +36,31 @@
 	</c:forEach>
 
 	<c:if test="${ ! user_exists }">
-		<sql:update dataSource="${ db }" var="upNo" >
+		<sql:update dataSource="${ db }" var="upNo">
 			INSERT INTO "MA_ADMIN_MGR"
-			( "MGR_ID", "MGR_PW", "MGR_GRADE", "MGR_NAME", "MOD_DATE"  )
-			VALUES ( ?, ?, ? , ? , ? )
+			( "SEQ", "MGR_ID", "MGR_PW", "MGR_GRADE", "MGR_NAME", "REG_ID", "REG_DATE", "MOD_ID", "MOD_DATE" )
+			SELECT MAX( "SEQ" ) + 1 , ?, ?, ?, ? 
+			, 'admin', TO_CHAR( NOW(), 'yyyymmddhhmiss' ),  'admin', TO_CHAR( NOW(), 'yyyymmddhhmiss' )
+			FROM "MA_ADMIN_MGR" 
 			
 			<sql:param value="${ param.user_id }" />
-			<sql:param value="${ pass.encode( param.user_pass ) }" />
+			<sql:param value="${ password.encode( param.user_pass ) }" />
 			<sql:param value="${ param.user_grade }" />
-			<sql:param value="${ param.user_name }" />
-			<sql:param value="${ param.user_id }" />
+			<sql:param value="${ param.user_name }" /> 
 		</sql:update>
+
+		<c:if test="${ upNo == 1 }">
+			<c:redirect url="index.jsp">
+				<c:param name="message" value="회원 가입이 완료되었습니다."></c:param>
+			</c:redirect>
+		</c:if>
 	</c:if>
 </c:if>
 
 <body>
 
 	<jsp:include page="210_header.jsp" />
-
+	
 	<div class="container">
 		<ul class="nav nav-tabs">
 			<li class="nav-item"><a class="nav-link" href="user_login.jsp"> <i class="fas fa-sign-in-alt"></i> 사용자 로그인
@@ -67,7 +74,13 @@
 		<form action="" class="needs-validation" onsubmit="return check_submit();">
 			<div class="form-group">
 				<label>아이디 : </label> <input type="text" class="form-control" id="user_id" name="user_id" value="${ param.user_id }"
-					style="width: 60%;"> <span id="user_id_valid" class="help-block invisible text-danger"> 잘못된 아이디입니다. </span>
+					style="width: 60%;">
+					<c:if test="${ user_exists }" > 
+						<span id="user_id_valid" class="help-block text-danger"> 이미 존재하는 아이디입니다. </span>
+					</c:if>
+					<c:if test="${ ! user_exists }" > 
+						<span id="user_id_valid" class="help-block invisible text-danger"> 잘못된 아이디입니다. </span>
+					</c:if>
 			</div>
 			<div class="form-group">
 				<label>등급 : </label> <input type="text" class="form-control" id="user_grade" name="user_grade" value="admin"
@@ -117,7 +130,7 @@
 					var pass1 = $("#user_pass").val().trim();
 					var pass2 = $("#user_pass2").val().trim();
 
-					if (valid && pass1.length < 1) {
+					if (valid && pass1.length < 6) {
 						$("#user_pass_valid").removeClass("invisible");
 
 						valid = false;
@@ -129,7 +142,7 @@
 						valid = false;
 					}
 
-					return false;
+					return valid;
 				}
 			</script>
 		</form>
