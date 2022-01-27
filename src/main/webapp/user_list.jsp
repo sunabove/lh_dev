@@ -11,15 +11,7 @@
 	<c:redirect url="index.jsp" />
 </c:if>
 
-<c:set var="a" value="1,2354" />
 <c:set scope="request" var="page_title" value="사용자 관리" />
-
-<!DOCTYPE html>
-<html lang="ko">
-
-<head>
-<jsp:include page="200_html_head.jsp" />
-</head>
 
 <c:set var="page_no" value="${ empty param.page_no ? 0 : param.page_no }" /> 
 
@@ -46,6 +38,12 @@
 	<sql:param value="${ param.page_no }" />
 </sql:query>
 
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<jsp:include page="200_html_head.jsp" />
+</head>
 
 <body>
 

@@ -11,8 +11,38 @@
 	<c:redirect url="index.jsp" />
 </c:if>
 
-<c:set var="a" value="1,2354" />
-<c:set scope="request" var="page_title" value="모델 관리" />
+<c:set var="page_no" value="${ empty param.page_no ? 0 : param.page_no }" /> 
+
+<c:set var="record_count" value="${ 0 }" />
+<c:set var="page_count" value="${ 1 }" />
+
+<sql:query dataSource="${db}" var="result">
+	SELECT 
+	  count(*) AS cnt
+	, CEIL( count(*)/10.0 ) AS page_cnt
+	FROM meta_data 
+	WHERE file_fmt = 'XLS'
+</sql:query>
+
+<c:forEach var="row" items="${result.rows}">
+	<c:set var="record_count" value="${ row.cnt }" />
+	<c:set var="page_count" value="${ row.page_cnt }" />
+</c:forEach>
+
+<sql:query dataSource="${db}" var="result">
+	SELECT ROW_NUMBER () OVER (ORDER BY data_id) AS rno , 
+	data_id, org_file, dest_loc, data_src, file_fmt, file_usage
+	, TO_CHAR( get_date, 'YY-MM-DD HH:MI:SS') get_date
+	, TO_CHAR( upload_date, 'YY-MM-DD HH:MI:SS') upload_date
+	, TO_CHAR( model_apply_date, 'YY-MM-DD HH:MI:SS') model_apply_date
+	, model_apply_user_id
+	FROM meta_data
+	WHERE file_fmt = 'XLS'
+	ORDER BY data_id
+	LIMIT 10 OFFSET CAST( ? AS INTEGER )*10
+	<sql:param value="${ param.page_no }" />
+</sql:query> 
+		
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -31,19 +61,6 @@
 				href="model_manage.jsp"><i class="fas fa-list"></i>&nbsp; 모델 목록</a></li>
 		</ul>		
 		<br/>
-		
-		<sql:query dataSource="${db}" var="result">
-			SELECT ROW_NUMBER () OVER (ORDER BY data_id) AS rno , 
-			data_id, org_file, dest_loc, data_src, file_fmt, file_usage
-			, TO_CHAR( get_date, 'YY-MM-DD HH:MI:SS') get_date
-			, TO_CHAR( upload_date, 'YY-MM-DD HH:MI:SS') upload_date
-			, TO_CHAR( model_apply_date, 'YY-MM-DD HH:MI:SS') model_apply_date
-			, model_apply_user_id
-			FROM meta_data
-			WHERE file_fmt = 'XLS'
-			ORDER BY data_id
-			LIMIT 10
-		</sql:query>
 		
 		<table class="table table-hover table-stripped text-nowrap text-center">
 			<thead>
@@ -82,23 +99,34 @@
 					<td>&nbsp;</td>					
 					<td colspan="100%">
 						<ul class="pagination">
-							<li class="page-item"><a class="page-link" href="#">Prev</a></li>
-							<li class="page-item active"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#">4</a></li>
-							<li class="page-item"><a class="page-link" href="#">5</a></li>
-							<li class="page-item"><a class="page-link" href="#">6</a></li>
-							<li class="page-item"><a class="page-link" href="#">7</a></li>
-							<li class="page-item"><a class="page-link" href="#">8</a></li>
-							<li class="page-item"><a class="page-link" href="#">9</a></li>
-							<li class="page-item"><a class="page-link" href="#">Next</a></li>
+							<li class="page-item">
+								<a class="page-link" href="#" onclick="goto_page(0);" >Prev</a>
+							</li>
+							<c:forEach var="i" begin="${ 0 }" end="${ page_count - 1 }">
+								<li class="page-item ${ page_no eq i ? ' active' : '' } ">
+									<a class="page-link" href="#" onclick="goto_page( ${i} );">${ i + 1 }</a>
+								</li>
+							</c:forEach>
+							<li class="page-item">
+								<a class="page-link" href="#" onclick="goto_page( ${page_count} );">Next</a>
+							</li>
 						</ul>
 					</td>
 					<td>&nbsp;</td>
 				</tr>
 			</tfoot>
 		</table>
+		
+		<form id="myForm">
+			<input type="hidden" name="page_no" id="page_no" value="0" />
+		</form>
+		
+		<script>
+			function goto_page( page_no ) {
+				$( "#page_no" ).val( page_no ); 
+				$( "#myForm" ).submit();
+			}
+		</script>
 	</div>
 
 	<jsp:include page="220_footer.jsp" />
