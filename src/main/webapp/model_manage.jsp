@@ -8,7 +8,7 @@
 <jsp:include page="100_common.jsp" /> 
 
 <c:if test="${ empty sessionScope.login_user_id }" >
-	<c:redirect url="index.jsp" />
+	<c:redirect url="user_login.jsp" />
 </c:if>
 
 <c:set var="page_no" value="${ empty param.page_no ? 0 : param.page_no }" /> 
@@ -18,8 +18,8 @@
 
 <sql:query dataSource="${db}" var="result">
 	SELECT 
-	  count(*) AS cnt
-	, CEIL( count(*)/10.0 ) AS page_cnt
+	  COALESCE( count(*), 0 ) AS cnt
+	, CEIL( COALESCE( count(*), 0 )/10.0 ) AS page_cnt
 	FROM meta_data 
 	WHERE file_fmt = 'XLS'
 </sql:query>

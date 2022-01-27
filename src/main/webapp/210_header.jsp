@@ -16,7 +16,7 @@
 			aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<div class="collapse navbar-collapse" id="navbarResponsive">
+		<div class="collapse navbar-collapse text-nowrap_" id="navbarResponsive">
 			<ul class="navbar-nav ms-auto my-2 my-lg-0">
 				<li class="nav-item"><a
 					class="nav-link ${fn:contains( path, 'data_manage.jsp' ) ? 'active font-weight-bolder' : '' }"
