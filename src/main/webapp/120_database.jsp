@@ -5,10 +5,24 @@
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <%@ taglib prefix="fn" 	uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<sql:setDataSource scope="session" var="db" driver="org.postgresql.Driver" 
-	url="jdbc:postgresql://localhost:5432/landbigdata" 
-	user="landbigdata" password="landbigdata" 
-/> 
+<%
+	String osName = System.getProperty("os.name").toLowerCase() ;
+	request.setAttribute( "osName", osName );
+%>
+
+<c:if test="${ fn:contains( osName, 'windows' ) }" >
+	<sql:setDataSource scope="session" var="db" driver="org.postgresql.Driver" 
+		url="jdbc:postgresql://localhost:5432/landbigdata" 
+		user="landbigdata" password="landbigdata" 
+	/> 
+</c:if>
+
+<c:if test="${ !fn:contains( osName, 'windows' ) }" >
+	<sql:setDataSource scope="session" var="db" driver="org.postgresql.Driver" 
+		url="jdbc:postgresql://192.168.100.71:5432/landbigdata" 
+		user="landbigdata" password="landbigdata" 
+	/> 
+</c:if>
 
 <c:set var="dbInit" value="${ false }" />
 
