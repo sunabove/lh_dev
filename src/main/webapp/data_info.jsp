@@ -43,7 +43,7 @@
 			, TO_CHAR( model_apply_date, 'YYYY-MM-DD HH:MI:SS') model_apply_date
 			, model_apply_user_id
 			FROM meta_data
-			WHERE data_id = CAST( ? AS INTEGER)
+			WHERE data_id = ?
 			ORDER BY data_id
 			LIMIT 10
 			<sql:param value="${ param.data_id }" />

@@ -22,6 +22,7 @@
 	, CEIL( COALESCE( count(*), 0 )/10.0 ) AS page_cnt
 	FROM meta_data 
 	WHERE file_fmt = 'XLS'
+	AND is_deleted = 0 
 </sql:query>
 
 <c:forEach var="row" items="${result.rows}">
@@ -38,6 +39,7 @@
 	, model_apply_user_id
 	FROM meta_data
 	WHERE file_fmt = 'XLS'
+	AND is_deleted = 0 
 	ORDER BY data_id
 	LIMIT 10 OFFSET CAST( ? AS INTEGER )*10
 	<sql:param value="${ param.page_no }" />

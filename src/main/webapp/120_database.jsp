@@ -78,10 +78,12 @@
 		CREATE TABLE access_url( url_id SERIAL PRIMARY KEY, url_text VARCHAR(1000 ), url_desc VARCHAR(1000) );
 		CREATE TABLE user_access( user_id varchar(200), user_url_id int, url_access int default 0, primary key( user_id, user_url_id ) );
 		
-		CREATE TABLE meta_data(data_id SERIAL PRIMARY KEY, org_file VARCHAR(200)
+		CREATE TABLE meta_data(data_id VARCHAR(32) PRIMARY KEY, org_file VARCHAR(200)
 		 , dest_loc VARCHAR(200), data_src VARCHAR(200), file_fmt VARCHAR(200)
 		 , file_usage VARCHAR(200), get_date TIMESTAMP, upload_date TIMESTAMP
-		 , model_apply_date TIMESTAMP, model_apply_user_id VARCHAR(200) );
+		 , model_apply_date TIMESTAMP, model_apply_user_id VARCHAR(200)
+		 , is_deleted INT default 0
+		  );
 		 
 		INSERT INTO access_url(url_id, url_text, url_desc) values( 1, 'data_manage.jsp', '데이터 관리' );
 		INSERT INTO access_url(url_id, url_text, url_desc) values( 2, 'model_manage.jsp', '모델 관리' );
