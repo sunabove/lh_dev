@@ -14,6 +14,37 @@
 <c:set var="a" value="1,2354" />
 <c:set scope="request" var="page_title" value="데이터 관리" />
 
+<c:if test="${ param.cmd == 'delete' }" >
+	<sql:update dataSource="${ db }" var="upNo" >
+		UPDATE meta_data 
+		SET is_deleted = 1 , model_apply_date = NULL
+		WHERE data_id = ?	
+		<sql:param value="${ param.data_id }" />	
+	</sql:update>
+</c:if>
+<c:if test="${ param.cmd == 'redeploy' }" >
+	<sql:update dataSource="${ db }" var="upNo" >
+		UPDATE meta_data 
+		SET is_deleted = 0 , model_apply_date = NULL, upload_date=NULL
+		WHERE data_id = ?	
+		<sql:param value="${ param.data_id }" />	
+	</sql:update>
+</c:if>
+
+<sql:query dataSource="${db}" var="result">
+	SELECT ROW_NUMBER () OVER (ORDER BY data_id) AS rno , 
+	data_id, org_file, dest_loc, data_src, file_fmt, file_usage
+	, TO_CHAR( get_date, 'YYYY-MM-DD HH:MI:SS') get_date
+	, TO_CHAR( upload_date, 'YYYY-MM-DD HH:MI:SS') upload_date
+	, TO_CHAR( model_apply_date, 'YYYY-MM-DD HH:MI:SS') model_apply_date
+	, model_apply_user_id
+	FROM meta_data
+	WHERE data_id = ?
+	ORDER BY data_id
+	LIMIT 10
+	<sql:param value="${ param.data_id }" />
+</sql:query>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -34,20 +65,6 @@
 					데이터 정보</a></li>
 		</ul>
 		<br />
-
-		<sql:query dataSource="${db}" var="result">
-			SELECT ROW_NUMBER () OVER (ORDER BY data_id) AS rno , 
-			data_id, org_file, dest_loc, data_src, file_fmt, file_usage
-			, TO_CHAR( get_date, 'YYYY-MM-DD HH:MI:SS') get_date
-			, TO_CHAR( upload_date, 'YYYY-MM-DD HH:MI:SS') upload_date
-			, TO_CHAR( model_apply_date, 'YYYY-MM-DD HH:MI:SS') model_apply_date
-			, model_apply_user_id
-			FROM meta_data
-			WHERE data_id = ?
-			ORDER BY data_id
-			LIMIT 10
-			<sql:param value="${ param.data_id }" />
-		</sql:query>
 
 		<c:forEach var="row" items="${result.rows}">
 			<div class="row">
@@ -111,14 +128,29 @@
 					
 					<br/>
 
-					<button type="button" class="btn btn-warning">재실행</button>
-					<button type="button" class="btn btn-secondary">삭제</button>
-					<button type="button" class="btn btn-primary">완료</button>
+					<button type="button" class="btn btn-primary" onclick="doCmd( 'redeploy' );" >재실행</button>
+					<button type="button" class="btn btn-secondary" onclick="doCmd( 'delete' )" >삭제</button>
+					
+					<!-- 
+					&nbsp;
 					<button type="button" class="btn btn-info disabled">진행</button>
 					<button type="button" class="btn btn-danger disabled">실패</button>
 					<button type="button" class="btn btn-dark disabled">에러</button>
+					 -->
 					
-					<br/><br/>
+					<br/><br/> 
+					
+					<form id="myForm">
+						<input type="hidden" name="data_id" id="data_id" value="${ param.data_id }" />
+						<input type="hidden" name="cmd" id="cmd" />
+					</form>
+					
+					<script>
+						function doCmd( cmd ) {
+							$( "#cmd" ).val( cmd )
+							$( "#myForm" ).submit()
+						}
+					</script>
 				</div>
 			</div>
 		</c:forEach>

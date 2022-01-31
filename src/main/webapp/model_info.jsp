@@ -38,7 +38,6 @@
 	</sql:update>
 </c:if>
 
-
 <sql:query dataSource="${db}" var="result">
 	SELECT ROW_NUMBER () OVER (ORDER BY data_id) AS rno , 
 	data_id, org_file, dest_loc, data_src, file_fmt, file_usage

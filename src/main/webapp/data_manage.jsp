@@ -23,6 +23,7 @@
 	  COALESCE( count(*), 0 ) AS cnt
 	, CEIL( COALESCE( count(*), 0 )/10.0 ) AS page_cnt
 	FROM meta_data
+	WHERE is_deleted = 0 
 </sql:query>
 
 <c:forEach var="row" items="${result.rows}">
@@ -38,6 +39,7 @@
 	, TO_CHAR( model_apply_date, 'YY-MM-DD HH:MI:SS') model_apply_date
 	, model_apply_user_id
 	FROM meta_data
+	WHERE is_deleted = 0 
 	ORDER BY data_id
 	LIMIT 10 OFFSET CAST( ? AS INTEGER )*10
 	<sql:param value="${ param.page_no }" />
