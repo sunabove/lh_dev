@@ -15,28 +15,21 @@
 
 <c:if test="${ ! empty param.url_id && ! empty param.url_access }" >
 	<sql:update dataSource="${db}" var="upNo" > 
-		INSERT INTO user_access( user_id, user_url_id, url_access )
-		SELECT ?, CAST( ? AS INTEGER ), CAST( ? AS INTEGER ) 
-		FROM USER_ACCESS
-		WHERE ( select COALESCE( count(*), 0 ) from user_access where user_id = ? and user_url_id = CAST( ? AS INTEGER) ) = 0 
+		INSERT INTO user_access ( user_id, user_url_id, url_access )
+		VALUES ( ?, CAST( ? AS INTEGER ), CAST( ? AS INTEGER ) )
+		ON CONFLICT( user_id, user_url_id ) 
+		DO UPDATE
+		SET url_access = CAST( ? AS INTEGER )
+		WHERE user_access.user_id = ? AND user_access.user_url_id = CAST( ? AS INTEGER ) 
 		
-		<sql:param value="${ sessionScope.login_user_id }" />
-		<sql:param value="${ param.url_id }" />
-		<sql:param value="${ param.url_access }" /> 
-		<sql:param value="${ sessionScope.login_user_id }" />
-		<sql:param value="${ param.url_id }" />
-	</sql:update>
-	
-	<sql:update dataSource="${db}" var="upNo" >
-		UPDATE user_access SET
-		user_url_id =  CAST( ? AS INTEGER )
-		, url_access = CAST( ? AS INTEGER )
-		WHERE user_id = ? and user_url_id = CAST( ? AS INTEGER )
+		<sql:param value="${ param.user_id }" />
 		<sql:param value="${ param.url_id }" />
 		<sql:param value="${ param.url_access }" />
-		<sql:param value="${ sessionScope.login_user_id }" />
+		 
+		<sql:param value="${ param.url_access }" />
+		<sql:param value="${ param.user_id }" />
 		<sql:param value="${ param.url_id }" />
-	</sql:update>
+	</sql:update> 
 </c:if>
 
 <sql:query dataSource="${db}" var="result">
@@ -46,7 +39,6 @@
 	ORDER BY url_id
 	<sql:param value="${ param.user_id }" />
 </sql:query>
-
 
 
 <!DOCTYPE html>
@@ -107,6 +99,7 @@
 		</table>
 
 		<form id="myForm">
+			<input type="hidden" name="user_id" id="user_id" value="${ param.user_id }" />
 			<input type="hidden" name="url_id" id="url_id"/> 
 			<input type="hidden" name="url_access" id="url_access" />
 		</form>
